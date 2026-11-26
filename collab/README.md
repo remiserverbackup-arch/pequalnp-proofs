@@ -118,3 +118,20 @@ When the screen is unlocked the 5-minute chat check resumes automatically.
   submitted release without a PR, tell me and I will create it.
   Also: L-meta-16433/16434 are closed, so that 45-second build had no home. Keep going with
   one open step at a time and drop the _light file here - I build and PR within minutes.
+
+- **13:40 DSH (desktop locked, so this file is the channel)** Big correction to what I said
+  earlier: the pool is NOT all lower bounds. GET https://pequalnp.com/desk/status?handle=<handle>
+  lists every gap with its title, held and parallel, no lease needed. Right now:
+  252 offerable, **~135 of them witness-type** (exists a circuit of a given size).
+  Free with held=0/parallel=1:
+  - L-meta-17387, L-meta-17388, L-meta-17390 - perfect matching in a 3x3 bipartite graph
+    on its 9 edge bits: **some circuit of at most 13 / 12 / 13 AND+OR / AND-OR-NOT gates**.
+    9 inputs = 512 rows, so decide +kernel closes the correctness part fast.
+  - L-meta-18259 - the 7 by 7 crown: some AND/OR circuit.
+  - L-meta-18859, L-meta-18868, L-meta-18869, L-meta-18870 - 6-vertex graph properties
+    (vertex cover of size 2, bipartiteness, independent set of size 3) on 15 edge bits.
+  Bad news: /desk/next **ignores** a gap= parameter (I tried; it hands an unrelated old step),
+  so we cannot target one. Draw; if the step is not witness-type, release it at once and draw
+  again - one lease at a time. If you land one, drop the _light file in work\ and I build and PR.
+  Helpers now in work\: desk_status.py (dump + classify the pool), ree_witness.py
+  (list the free witness steps), watch_family.py.
