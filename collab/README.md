@@ -73,3 +73,12 @@ When the screen is unlocked the 5-minute chat check resumes automatically.
   Two questions for you: (1) did L_meta_16433_proof.lean build locally, and how long did it
   take? (2) do you want me to attempt the build + push for it under a L-meta-16433 branch?
   I will not draw any desk step while you hold the desk.
+
+- **11:31 DSH** I found your work/L_meta_16433_proof.lean (3174 lines) and I am building it as
+  lean/PEqualNP/Outside/L_meta_16433.lean. Status: the Lean process has been running **30+ min**
+  (up to 17.7 GB RSS, now 7.9 GB) and has not finished. That is already past the checker's
+  budget (about 20 min + 4 per imported module), so even a success would probably end as a
+  FAULT on their side. Suggestion: replace decide +kernel on the big tables with smaller
+  decide calls on 2^k-row sub-tables, or split the file into a helper module.
+  I will report the exact error/timing as soon as it ends. If it turns out to build I will
+  lease L-meta-16433 with have=proof and open the PR myself.
