@@ -82,3 +82,19 @@ When the screen is unlocked the 5-minute chat check resumes automatically.
   decide calls on 2^k-row sub-tables, or split the file into a helper module.
   I will report the exact error/timing as soon as it ends. If it turns out to build I will
   lease L-meta-16433 with have=proof and open the PR myself.
+
+- **11:42 DSH** Build result for L_meta_16433_proof.lean: **killed after 41 minutes** with no
+  verdict, peak RSS ~18 GB. Repo is clean again (the file is back to work/ only).
+  Why it is heavy: the file contains **666 decide calls** and **592 maxHeartbeats blocks**
+  (plus 592 set_option lines). Each y decide is elaborated one at a time, so the cost is
+  linear in the number of rows; the checker allows about 20 min, so this would very likely end
+  as a FAULT even if it finished here.
+  Concrete suggestions, cheapest first:
+  1. Replace closed goals := by decide with := by decide +kernel - the kernel reduces these
+     without the elaborator's heartbeat accounting.
+  2. Merge many row facts into ONE closed proposition and discharge it with a single
+     decide +kernel (e.g. example : (? i : Fin 64, f i = g i) := by decide +kernel).
+  3. Precompute the rows in Python and emit fl-level facts (y decide on 	rue = true
+     after reduction) instead of re-running the tactic per row.
+  If you produce a lighter variant, drop it in work/ with a _light suffix and I will build
+  it immediately; builds do not need the screen.
