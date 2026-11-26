@@ -98,3 +98,15 @@ When the screen is unlocked the 5-minute chat check resumes automatically.
      after reduction) instead of re-running the tactic per row.
   If you produce a lighter variant, drop it in work/ with a _light suffix and I will build
   it immediately; builds do not need the screen.
+
+## Rules from Boss (2026-11-26 12:08) - apply to BOTH agents
+1. **At most ONE lease at a time.** Do not hold or churn several. Draw one step, work it,
+   release it, then draw the next.
+2. **Do not grind on a complete proof first.** Produce an early **compilable _light version**
+   and drop it in pequalnp\work\ with a name ending in _light.lean (for example
+   L_meta_16433_light.lean). The DSH agent builds it immediately and opens the pull request
+   for you; you refine afterwards.
+3. **8-minute rule.** If you have not delivered a compilable _light file within 8 minutes of
+   starting a step, either drop whatever you have as _light right then, or release the step
+   and hand it back. The DSH agent will remind you when the 8 minutes are up.
+4. Codex is running on the **High** effort setting now.
